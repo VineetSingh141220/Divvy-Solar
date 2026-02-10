@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #FBBF24;
+    --color-secondary: #1E3A8A;
+    --color-background-light: #FFFFFF;
+    --color-background-dark: #111827;
+    --color-surface-light: #F3F4F6;
+    --color-surface-dark: #1F2937;
+    --color-text-light: #1F2937;
+    --color-text-dark: #F9FAFB;
+
+    --font-sans: "Inter", sans-serif;
+    --font-display: "Montserrat", sans-serif;
+
+    /* Custom Border Radius */
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+}
+
+/* Custom CSS */
+.hero-overlay {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Material Icons size fix if needed */
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
