@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path;
+
+    const navLinks = [
+        { name: 'Home', path: '/' },
+        { name: 'Core Solutions', path: '/services' },
+        { name: 'About', path: '/about' },
+        { name: 'Blog', path: '/blog' },
+        { name: 'Contact', path: '/contact' },
+    ];
 
     return (
         <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
@@ -20,37 +31,62 @@ const Navbar = () => {
                         </div>
                     </Link>
                 </div>
+
+                {/* Desktop Menu */}
                 <div className="hidden md:flex items-center space-x-8 text-sm font-medium uppercase tracking-wide">
-                    <Link to="/" className="text-[color:var(--color-primary)] font-bold">Home</Link>
-                    <div className="relative group cursor-pointer">
-                        <span className="flex items-center hover:text-[color:var(--color-primary)] dark:text-gray-200 dark:hover:text-[color:var(--color-primary)] transition">
-                            Core Solutions <i className="fas fa-chevron-down ml-1 text-xs"></i>
-                        </span>
-                    </div>
-                    <Link to="/about" className="hover:text-[color:var(--color-primary)] dark:text-gray-200 dark:hover:text-[color:var(--color-primary)] transition">About</Link>
-                    <a className="hover:text-[color:var(--color-primary)] dark:text-gray-200 dark:hover:text-[color:var(--color-primary)] transition" href="#">Blog</a>
+                    {navLinks.slice(0, 4).map((link) => (
+                        <Link
+                            key={link.name}
+                            to={link.path}
+                            className={`${isActive(link.path) ? 'text-[color:var(--color-primary)] font-bold' : 'text-gray-700 dark:text-gray-200 hover:text-[color:var(--color-primary)] dark:hover:text-[color:var(--color-primary)]'} transition duration-300`}
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
+                    <Link
+                        to="/contact"
+                        className={`${isActive('/contact') ? 'text-[color:var(--color-primary)] font-bold' : 'text-gray-700 dark:text-gray-200 hover:text-[color:var(--color-primary)]'} transition duration-300`}
+                    >
+                        Contact
+                    </Link>
                 </div>
-                <a className="hidden md:block border-2 border-[#1E3A8A] dark:border-[color:var(--color-primary)] text-[#1E3A8A] dark:text-[color:var(--color-primary)] hover:bg-[#1E3A8A] hover:text-white dark:hover:bg-[color:var(--color-primary)] dark:hover:text-[#1E3A8A] px-6 py-2 rounded-full text-sm font-semibold transition duration-300 uppercase" href="#">
+
+                <Link
+                    to="/contact"
+                    className="hidden md:block border-2 border-[#1E3A8A] dark:border-[color:var(--color-primary)] text-[#1E3A8A] dark:text-[color:var(--color-primary)] hover:bg-[#1E3A8A] hover:text-white dark:hover:bg-[color:var(--color-primary)] dark:hover:text-[#1E3A8A] px-6 py-2 rounded-full text-sm font-semibold transition duration-300 uppercase leading-none text-center"
+                >
                     Schedule a<br /><span className="text-[0.65rem]">Consultation</span>
-                </a>
+                </Link>
+
                 <button
                     className="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                    <i className="fas fa-bars text-2xl"></i>
+                    <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-2xl`}></i>
                 </button>
             </div>
+
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
-                    <div className="bg-[#1a1f3c] text-white p-4">
-                        <Link to="/" className="block py-2 text-[color:var(--color-primary)] font-bold">Home</Link>
-                        <a className="block py-2 hover:text-[color:var(--color-primary)]" href="#">Core Solutions</a>
-                        <Link to="/about" className="block py-2 hover:text-[color:var(--color-primary)]">About</Link>
-                        <a className="block py-2 hover:text-[color:var(--color-primary)]" href="#">Blog</a>
-                        <a className="block mt-4 text-center border-2 border-[color:var(--color-primary)] text-[color:var(--color-primary)] py-2 rounded-full font-bold" href="#">
-                            Schedule a Consultation
-                        </a>
+                <div className="md:hidden bg-[#1a1f3c] border-t border-gray-800 transition-all duration-300 overflow-hidden">
+                    <div className="flex flex-col p-6 space-y-4">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                className={`${isActive(link.path) ? 'text-[color:var(--color-primary)] font-bold' : 'text-white hover:text-[color:var(--color-primary)]'} text-lg py-2 border-b border-gray-800`}
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                        <Link
+                            to="/contact"
+                            className="bg-[color:var(--color-primary)] text-gray-900 text-center py-3 rounded-full font-bold uppercase tracking-wider mt-4"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Get a Consultation
+                        </Link>
                     </div>
                 </div>
             )}

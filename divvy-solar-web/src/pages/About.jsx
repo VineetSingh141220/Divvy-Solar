@@ -19,6 +19,7 @@ const About = () => {
             role: "Head of Operations",
             img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC74ACS_NmO58TXHGV27WIA4qDDNYI8_FRZN4CTlxVR1PE2qa7OPM-aRvX2Zvb0YJk7NyoJGQaxE0fz3sivzNGphaMDnF5lzt9-ZsiEEzQ0I1YIfnJgdIGCnE1IYk7Yo0252OJzzn3sGxBOByuntSujxEUYUWYFFUVFXcTIVV5QT9sdbXm6kt4HQkdd-LRW-uWrU4kQgAtn9jXyPd4pICof6hm6o8iy-UXcnYiiv1u-cQKn_Hvdhl2TAhZST9uxFWxtwpjjixFDHFE" // Reusing news image
         },
+
         {
             name: "DEF",
             role: "Lead Engineer",

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     return (
@@ -14,9 +15,9 @@ const Hero = () => {
                         Embrace a new dawn for solar energy with a most trusted Indian brand since 2018.
                     </p>
                     <div className="pt-6">
-                        <a href="#" className="bg-[color:var(--color-primary)] text-gray-900 text-sm font-bold uppercase py-3 px-8 rounded-full hover:bg-yellow-400 transition">
-                            Learn More
-                        </a>
+                        <Link to="/services" className="bg-[color:var(--color-primary)] text-gray-900 text-sm font-bold uppercase py-3 px-8 rounded-full hover:bg-yellow-400 transition shadow-lg">
+                            Explore Solutions
+                        </Link>
                     </div>
                 </div>
             </div>
